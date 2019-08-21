@@ -1,15 +1,26 @@
 version: '3'
+
 services:
+  #Spring Application. Assumes sibling directory with Dockerfile
+  #
+  # 8080:8080 
+  #  -> | ->
   spring-boot:
     build: ../mtglibrary-spring/
     ports:
       - "8080:8080"
+    #Required for spring-boot container to resolve elasticsearch container hostname
     depends_on:
       - elasticsearch
+  #Single-Node Elasticsearch Cluster. Pulls elasticsearch:7.3.0 from DockerHub 
+  #
+  # 9300:9300
+  #  -> | ->
   elasticsearch:
     image: "elasticsearch:7.3.0"
     ports:
       - "9200:9200"
       - "9300:9300"
+    #Required else cluster fails w/ ERR 78
     environment: 
       - discovery.type=single-node
