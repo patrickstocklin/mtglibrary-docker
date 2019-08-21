@@ -34,6 +34,6 @@
 ### Remove Base Images
 
 ```  
-  270  docker rmi -f mtglibrary-spring:latest
-  299  docker rmi -f elasticsearch:7.3.0
+270  docker rmi -f mtglibrary-spring:latest
+299  docker rmi -f elasticsearch:7.3.0
 ```

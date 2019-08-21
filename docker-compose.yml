@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+  #React Application. Assumes sibling directory with Dockerfile
+  #
+  # 3000:3000 
+  #  -> | ->
+  react:
+    build: ../mtglibrary-react/
+    ports:
+      - "3000:3000"
+    #Maps sibling directory's app to container's app directory
+    volumes:
+      - '../mtglibrary-react/:/app'
+      - '/app/node_modules'
+    #Required for react container to resolve spring-boot container hostname
+    depends_on:
+      - spring-boot
   #Spring Application. Assumes sibling directory with Dockerfile
   #
   # 8080:8080 
@@ -24,3 +39,4 @@ services:
     #Required else cluster fails w/ ERR 78
     environment: 
       - discovery.type=single-node
+
