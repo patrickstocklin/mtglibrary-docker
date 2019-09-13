@@ -37,3 +37,8 @@
 270  docker rmi -f mtglibrary-spring:latest
 299  docker rmi -f elasticsearch:7.3.0
 ```
+
+### Start ES Image
+```
+ docker run -p 9200:9200 -p 9300:9300 -e "discery.type=single-node" elasticsearch:7.3.0
+```
